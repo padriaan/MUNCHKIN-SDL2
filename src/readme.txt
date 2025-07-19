@@ -1,5 +1,6 @@
  
 Unzip data.zip in data folder
+Unzip SDL2_ttf.zip in src folder
 
 Windows
 -------
