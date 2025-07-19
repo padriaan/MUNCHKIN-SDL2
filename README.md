@@ -27,8 +27,17 @@ Controls:
 - Esc to quit from game. Esc in start-screen to quit all.  
 - Character keys for entering high score name. Return to complete.
   
+![select_game_resized](https://github.com/user-attachments/assets/957c0231-7fc6-49f1-904b-76481d822abd)
 
-![Title_screen_resized](https://github.com/user-attachments/assets/9cff1338-fbda-479c-b107-3fdea71ddf85)  ![In Game_resized](https://github.com/user-attachments/assets/6f2c1e94-6cd6-41b5-9e3c-008800284cb1)
+![menu_screen_resized](https://github.com/user-attachments/assets/71f2d285-f14d-4be5-9008-ad8abc0191ed)
+
+![arcade_mode2_resized](https://github.com/user-attachments/assets/0ed3aef2-1a1c-41eb-a150-b2a77bbe5bb9)
+
+![99_pills_resized](https://github.com/user-attachments/assets/52aafb54-82ed-4849-a07c-e17bf4accbb0)
+
+![intermission1_resized](https://github.com/user-attachments/assets/9b0577c3-78ab-4718-a6ac-d6e164ca7c3c)
+
+![intermission2_resized](https://github.com/user-attachments/assets/c8886bda-0f8c-47c1-bf4e-469927caee99)
 
 
 
