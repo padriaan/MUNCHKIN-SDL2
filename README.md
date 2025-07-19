@@ -44,9 +44,11 @@ gcc -o munchkin.exe munchkin.c -Lc:\MinGW\include\SDL2 -lmingw32 -lSDL2main -lSD
 
 Run binary
 ------------
-Download src and data folders. 
-Extract data.zip (to get data\images and data\sounds).
-Extract SDL2_ttf.zip (to get src\SDL2_ttf.dll)
+Download and extract the minchkin_all_in_one.zip  
+  
+Download src and data folders.   
+Extract data.zip (to get data\images and data\sounds).  
+Extract SDL2_ttf.zip (to get src\SDL2_ttf.dll)  
 
 Execute in Windows:   
 double-click munchkin.exe
