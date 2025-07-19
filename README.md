@@ -28,7 +28,7 @@ Controls:
 - Character keys for entering high score name. Return to complete.
   
 
-![Title_Screen_resized](https://github.com/user-attachments/assets/ed2c0b2e-1fb9-4d78-a1d3-98afcc2970e9) ![In Game_resized](https://github.com/user-attachments/assets/6f2c1e94-6cd6-41b5-9e3c-008800284cb1)
+![Title_screen_resized](https://github.com/user-attachments/assets/9cff1338-fbda-479c-b107-3fdea71ddf85)  ![In Game_resized](https://github.com/user-attachments/assets/6f2c1e94-6cd6-41b5-9e3c-008800284cb1)
 
 
 
