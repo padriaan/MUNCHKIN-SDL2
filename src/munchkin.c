@@ -454,8 +454,6 @@ int main(int argc, char * argv[])
 
   /* Main loop */
   do {  
-    //intermission1();
-    //intermission2();
     title_screen();
     quit = game(mode);
   }  
@@ -2749,7 +2747,9 @@ void title_screen()
   y = (VIDEOPAC_RES_H / 2 * factor) - (5 * factor) + screen_offset_y;
 
   //joy_up = FALSE; joy_down = FALSE; joy_left = FALSE; joy_right = FALSE;
-  active_option_row = 1;
+  if (arcade_mode == TRUE)
+       active_option_row = 2;
+    else   active_option_row = 1;
   scroll_x = 0;
   powerpill_color = 1;
 
