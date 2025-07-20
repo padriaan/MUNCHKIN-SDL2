@@ -12,20 +12,20 @@ Originally released in 1981, programmed by Ed Averett.
 Created with SDL 2 in C.          
 Requirements (devel + libs):
 - SDL 2 
-- SDL_mixer
-- SDL_ttf
+- SDL_mixer  
+- SDL_ttf  
 - Images (bmp), sounds (wav), Font (o2.ttf modified)
 
-Created by Peter Adriaanse may 2025.
-- Version 1.2.5  SDL 2 (Linux + Windows)
+Created by Peter Adriaanse may 2025.  
+- Version 1.2.5  SDL 2 (Linux + Windows)  
 
-Press 1, Ctrl or Fire to start game.
+Press 1, Ctrl, Enter or Joystick Fire to start game.  
+Escape key of Joystick Home or Menu button to quit / go back.  
 
 Controls:  
-- Joystick or cursor keys
-- Use 8 to toggle full-screen on/off.  
-- Esc to quit from game. Esc in start-screen to quit all.  
-- Character keys for entering high score name. Return to complete.
+- Joystick or cursor keys  
+- Use key 8 to toggle full-screen on/off.  
+- Character keys for entering high score name. Return to complete.  
   
 ![select_game_resized](https://github.com/user-attachments/assets/957c0231-7fc6-49f1-904b-76481d822abd)
 
