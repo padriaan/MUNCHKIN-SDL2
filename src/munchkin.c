@@ -14,7 +14,8 @@ Requirements (devel + libs):
 
 Created by Peter Adriaanse May 2025.
 
-Version 1.2.4 SDL2 version (with full screen factor and harware rendering/scaling)
+Version 1.2.5 SDL2 version (with full screen factor and harware rendering/scaling)
+        (VERSION also in constant below)
 
 Choose start option, or press 1, Ctrl or joytick fire.
 
@@ -53,6 +54,8 @@ gcc -o munchkin.exe munchkin.c -Lc:\MinGW\include\SDL2 -lmingw32 -lSDL2main -lSD
 #endif
 
 /* constants */
+#define VERSION "1.2.5"
+
 #define DATA_PREFIX "../data/"
 #define NUM_IMAGES 148
 
@@ -588,7 +591,7 @@ void setup()
 
   /* Open display: */
   toggle_full_screen_mode(full_screen);
-  sprintf(title_string, "MUNCHKIN - factor: %d ", factor);
+  sprintf(title_string, "MUNCHKIN - version: %s ", VERSION);
   SDL_SetWindowTitle(gWindow, title_string);
 
   setup_joystick();
@@ -987,7 +990,7 @@ int get_user_input()
           if (  (event.jbutton.button == 0 || event.jbutton.button == 1)
                 && munchkin_dying != 1 )
                ; //printf("Fire button pressed\n");
-          if (event.type == SDL_JOYBUTTONDOWN  && event.jbutton.button == 8) {  // home button joy
+          if (event.type == SDL_JOYBUTTONDOWN  && (event.jbutton.button == 8 || event.jbutton.button == 7)) {  // home/menu button joy
                  printf("--Escape pressed joystick\n");   // return to instructions
                  start_new_game();           // clear all objects
                  return(1);
@@ -2828,8 +2831,16 @@ void title_screen()
              //printf("--- switch to TRUE \n");
              last_joystick_action = TRUE;
              if (joy_up == 1 || joy_down == 1 || joy_left == 1 || joy_right == 1) {  // select just 1 movement
-                 if (joy_up == 1)   if (active_option_row > 1) active_option_row --;
-                 if (joy_down == 1) if (active_option_row < 4) active_option_row ++;
+
+                 if (joy_up == 1)  {
+                    if (active_option_row > 1 && arcade_mode == FALSE) active_option_row --;
+                    if (active_option_row == 5 && arcade_mode == TRUE) active_option_row = 2;
+                 }
+
+                 if (joy_down == 1) {
+                   if (active_option_row < 5 && arcade_mode == FALSE) active_option_row ++;
+                   if (active_option_row == 2 && arcade_mode == TRUE) active_option_row = 5;
+                 } 
                  
                  if (joy_right == 1) {  
                    switch (active_option_row) {
@@ -2838,15 +2849,24 @@ void title_screen()
                         if (maze_selected == 5) maze_selected = 1;
                         switch_active_mini_map(maze_selected);
                         break;
-                      case(2): // ghosts option
+                     case(2):  // arcade mode option
+                       if (arcade_mode == FALSE) {
+                            arcade_mode = TRUE;
+                            maze_selected = 1;
+                            switch_active_mini_map(1);
+                            NUM_GHOSTS = 4;
+                            NUM_PILLS = 12;
+                       } else { arcade_mode = FALSE; }
+                       break;
+                      case(3): // ghosts option
                         NUM_GHOSTS++;
                         if (NUM_GHOSTS > 10) NUM_GHOSTS = 10; 
                         break;
-                      case(3): // pills option
+                      case(4): // pills option
                         NUM_PILLS++;
                         if (NUM_PILLS > 99) NUM_PILLS = 99; 
                         break;
-                      case(4): // start option
+                      case(5): // start option
                         sprintf(title_string, "Munchkin - maze: %d - ghosts: %d - pills: %d"
                                ,maze_selected, NUM_GHOSTS, NUM_PILLS);
                         SDL_SetWindowTitle(gWindow, title_string);  
@@ -2862,15 +2882,24 @@ void title_screen()
                         if (maze_selected == 0) maze_selected = 4;
                         switch_active_mini_map(maze_selected);
                         break;
-                      case(2): // ghosts option
+                     case(2):  // arcade mode option
+                       if (arcade_mode == FALSE) {
+                             arcade_mode = TRUE;
+                            maze_selected = 1;
+                            switch_active_mini_map(1);
+                            NUM_GHOSTS = 4;
+                            NUM_PILLS = 12;
+                       } else { arcade_mode = FALSE; }
+                       break;
+                      case(3): // ghosts option
                          NUM_GHOSTS--;
                          if (NUM_GHOSTS < 1) NUM_GHOSTS = 1; 
                          break;
-                      case(3): // pills option
+                      case(4): // pills option
                          NUM_PILLS--;
                          if (NUM_PILLS < 12) NUM_PILLS = 12; 
                          break;
-                       case(4): // start option
+                       case(5): // start option
                          sprintf(title_string, "Munchkin - maze: %d - ghosts: %d - pills: %d"
                                 , maze_selected, NUM_GHOSTS, NUM_PILLS);
                          SDL_SetWindowTitle(gWindow, title_string);  
@@ -2885,8 +2914,7 @@ void title_screen()
       
       if (event.type == SDL_KEYDOWN) {
           key = event.key.keysym.sym;
-          
-           if (key == 1073742048 || key == 49) {  // Button 1 or Left Ctrl pressed
+           if (key == 1073742048 || key == 49 || key == 13) {  // Button 1, Key Enter or Left Ctrl pressed
                 sprintf(title_string, "Munchkin - maze: %d - ghosts: %d - pills: %d"
                                     , maze_selected, NUM_GHOSTS, NUM_PILLS);
                 SDL_SetWindowTitle(gWindow, title_string);  
@@ -2987,8 +3015,9 @@ void title_screen()
            if (key == SDLK_ESCAPE)
               exit(0);
         }
-      else if (event.type == SDL_QUIT || (event.type == SDL_JOYBUTTONDOWN  && event.jbutton.button == 8) )   
-                         // close window pressed or home button on joystick
+      else if (event.type == SDL_QUIT || (event.type == SDL_JOYBUTTONDOWN  && 
+                   (event.jbutton.button == 8 || event.jbutton.button == 7)  ) )   
+                         // close window pressed or home/start button on joystick
         {
           exit(0);
         }
